@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increaseCounter, decreaseCounter } from "../features/countSlice";
+import {
+  increaseCounter,
+  decreaseCounter,
+  oddCounter,
+  addAmount,
+  extraReducers,
+  addAsync,
+} from "../features/countSlice";
 
 const Counter = () => {
   const count = useSelector((state) => state.count.countValue);
@@ -11,6 +18,18 @@ const Counter = () => {
   const handleDecrement = () => {
     dispatch(decreaseCounter());
   };
+
+  const handleOdd = () => {
+    dispatch(oddCounter());
+  };
+
+  const handleAmount = () => {
+    dispatch(addAmount());
+  };
+
+  const handleAddAsync = () =>{
+    dispatch(addAsync());
+  }
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
@@ -28,6 +47,26 @@ const Counter = () => {
             className="px-4 py-2 bg-green-500 text-white"
           >
             Increment
+          </button>
+        </div>
+        <div className="m-5 space-x-4">
+          <button
+            onClick={handleOdd}
+            className="px-4 py-2 bg-red-500 text-white "
+          >
+            Add If Odd
+          </button>
+          <button
+            onClick={handleAmount}
+            className="px-4 py-2 bg-green-500 text-white"
+          >
+            Add Amount
+          </button>
+          <button
+            onClick={handleAddAsync}
+            className="px-4 py-2 bg-green-500 text-white"
+          >
+            Add Async
           </button>
         </div>
       </div>
